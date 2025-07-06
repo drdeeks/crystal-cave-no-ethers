@@ -1,0 +1,43 @@
+{
+  "name": "Fire Crystal",
+  "description": "Crystal burning with eternal warmth",
+  "image": "https://gateway.pinata.cloud/ipfs/bafybeihpu26nuz3zztksn5lfsbdzw744c5mxgbxzrx3shkecoiiwc7w2rq/8.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Elemental Crystal"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Discovery Location",
+      "value": "Warm Crystal Cavern"
+    },
+    {
+      "trait_type": "Element",
+      "value": "Fire"
+    },
+    {
+      "trait_type": "Source Challenge",
+      "value": "Wordplay"
+    },
+    {
+      "trait_type": "Crystal Type",
+      "value": "Elemental"
+    },
+    {
+      "trait_type": "Eternal Flame",
+      "value": "True"
+    }
+  ],
+  "ipfs": {
+    "images_hash": "bafybeihpu26nuz3zztksn5lfsbdzw744c5mxgbxzrx3shkecoiiwc7w2rq",
+    "updated": "2025-06-30T20:38:00.777Z",
+    "gateway": "https://gateway.pinata.cloud/ipfs",
+    "enhanced": "2025-06-30T20:47:25.257Z",
+    "version": "enhanced",
+    "cleaned": "2025-06-30T20:47:57.814Z"
+  }
+}

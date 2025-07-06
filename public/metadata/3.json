@@ -1,0 +1,39 @@
+{
+  "name": "Marina's Journal",
+  "description": "Ancient explorer's notes and secrets",
+  "image": "https://gateway.pinata.cloud/ipfs/bafybeihpu26nuz3zztksn5lfsbdzw744c5mxgbxzrx3shkecoiiwc7w2rq/3.png",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Knowledge Repository"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Rare"
+    },
+    {
+      "trait_type": "Discovery Location",
+      "value": "Cave Entrance"
+    },
+    {
+      "trait_type": "Unlocks Path",
+      "value": "Secret Time Chamber"
+    },
+    {
+      "trait_type": "Historical Value",
+      "value": "Ancient"
+    },
+    {
+      "trait_type": "Partnership Gift",
+      "value": "True"
+    }
+  ],
+  "ipfs": {
+    "images_hash": "bafybeihpu26nuz3zztksn5lfsbdzw744c5mxgbxzrx3shkecoiiwc7w2rq",
+    "updated": "2025-06-30T20:38:00.766Z",
+    "gateway": "https://gateway.pinata.cloud/ipfs",
+    "enhanced": "2025-06-30T20:47:25.220Z",
+    "version": "enhanced",
+    "cleaned": "2025-06-30T20:47:57.805Z"
+  }
+}
