@@ -80,7 +80,6 @@ const AdventureLearningGame = () => {
   const [playerName, setPlayerName] = useState<string>('');
   const [isWalletConnected, setIsWalletConnected] = useState<boolean>(false);
   const [gameMode, setGameMode] = useState<'path' | 'quiz' | 'continue' | 'reward'>('path');
-  const [isMinting, setIsMinting] = useState<boolean>(false);
   const [collectedArtifacts, setCollectedArtifacts] = useState<number[]>([]);
   const [lastPathScene, setLastPathScene] = useState<string>('start');
   const mainContainerRef = useRef<HTMLDivElement>(null);
@@ -148,23 +147,6 @@ const AdventureLearningGame = () => {
   // Continue after quiz success
   const handleContinue = () => {
     setGameMode('reward');
-  };
-
-  // Mint NFT and return to path selection
-  const handleMintAndContinue = () => {
-    if (showArtifactReward && !isMinting) {
-      setIsMinting(true);
-      // Offline mode: instantly mark artifact as owned without blockchain interaction
-      setOwnedArtifactIds(prev =>
-        prev.includes(showArtifactReward.id) ? prev : [...prev, showArtifactReward.id]
-      );
-      // Remove artifact from collection queue so minting option doesn't reappear
-      setCollectedArtifacts(prev => prev.filter(id => id !== showArtifactReward.id));
-      // Reset UI state
-      setIsMinting(false);
-      setShowArtifactReward(null);
-      setGameMode('path');
-    }
   };
 
   // Skip minting and return to path selection
@@ -240,20 +222,7 @@ const AdventureLearningGame = () => {
                             (choiceText.includes('crystal') && (choiceText.includes('form') || choiceText.includes('cave') || choiceText.includes('forever') || choiceText.includes('eternity')));
       
       if (isMintingChoice) {
-        // Extract artifact ID from the action if possible
-        const actionString = choice.action.toString();
-        const artifactIdMatch = actionString.match(/showMintOption\((\d+)/);
-        
-        if (artifactIdMatch) {
-          const artifactId = parseInt(artifactIdMatch[1]);
-          // Only show minting option if the artifact was collected in this session and not already minted
-          const wasCollected = collectedArtifacts.includes(artifactId);
-          const alreadyMinted = ownedArtifactIds.includes(artifactId);
-          if (!wasCollected || alreadyMinted) {
-            return false;
-          }
-          return true;
-        }
+        return false; // Hide all minting-related choices entirely
       }
       
       // Keep all non-minting choices
@@ -1526,7 +1495,7 @@ const AdventureLearningGame = () => {
               onClick={handleContinue}
               className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg"
             >
-              → Forge the {showArtifactReward.name}
+              → Claim the {showArtifactReward.name}
             </button>
           </div>
         )}
@@ -1540,20 +1509,8 @@ const AdventureLearningGame = () => {
               <br/>This powerful relic holds ancient wisdom and mystical properties.
             </p>
             <div className="flex flex-row gap-4 justify-center items-center flex-wrap">
-              {ownedArtifactIds.includes(showArtifactReward.id) ? null : (
-                <button
-                  onClick={handleMintAndContinue}
-                  disabled={isMinting}
-                  className={`bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 min-w-[200px] ${
-                    isMinting ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-                >
-                  {isMinting ? '⏳ Forging...' : `🔮 Forge this artifact and preserve its power for eternity`}
-                </button>
-              )}
               <button
                 onClick={handleSkipMint}
-                disabled={isMinting}
                 className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 min-w-[200px]"
               >
                 Continue Your Journey
@@ -1640,10 +1597,10 @@ const AdventureLearningGame = () => {
               })}
             </div>
           </div>
-          {/* Minted Count - right, small font - reduced width */}
+          {/* Collected Count - right, small font - reduced width */}
           <div className="stats-artifact-count-small flex flex-col items-end justify-center ml-1" style={{ minWidth: 50, maxWidth: 55 }}>
-            <div className="stats-label-small" style={{ fontSize: '0.7rem', fontWeight: 'normal', marginBottom: '0.2rem' }}>MINTED</div>
-            <div className="stats-value-small" style={{ fontSize: '0.85rem', fontWeight: 'normal', marginBottom: '0.4rem' }}>{ownedArtifactIds.length} / {CANONICAL_ARTIFACTS.length}</div>
+            <div className="stats-label-small" style={{ fontSize: '0.7rem', fontWeight: 'normal', marginBottom: '0.2rem' }}>COLLECTED</div>
+            <div className="stats-value-small" style={{ fontSize: '0.85rem', fontWeight: 'normal', marginBottom: '0.4rem' }}>{collectedArtifacts.length} / {CANONICAL_ARTIFACTS.length}</div>
             <div className="placeholder-image" style={{ width: '60px', height: '45px', backgroundColor: '#2d1a4a', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', color: 'white' }}>
               IMG
             </div>
