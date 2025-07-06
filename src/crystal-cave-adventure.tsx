@@ -1,11 +1,14 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Home, Star, Moon, Sun, List } from 'lucide-react';
 import ReactConfetti from 'react-confetti';
 
 // Stubbed ethers object for offline mode—removes web3 dependency
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare const window: any; // ensure window type flexibility
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ethers: any = {}; // placeholder to avoid runtime errors when references remain
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CONTRACT_CONFIG = {
   address: process.env.REACT_APP_CONTRACT_ADDRESS || "0x17a8086D5760E6a2Ee0026866Cf986c02ce4dbD6",
   abi: [
@@ -1419,7 +1422,7 @@ const AdventureLearningGame = () => {
   // ... after detectAndFetch useEffect ...
   // Re-verify ownership when reward screen appears to avoid duplicate mint offers
   useEffect(() => {
-    const recheckOwnership = () => { /* offline mode: no ownership recheck */ };
+    /* offline mode: no ownership recheck */
   }, [showArtifactReward, isWalletConnected, ownedArtifactIds]);
   // ... existing code ...
 
