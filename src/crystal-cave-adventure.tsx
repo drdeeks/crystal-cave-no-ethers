@@ -1239,7 +1239,7 @@ const AdventureLearningGame = () => {
           id="activity-input"
           type="text"
           value={userAnswer}
-          onChange={e => setUserAnswer(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUserAnswer(e.target.value)}
           className="border rounded p-2 w-full text-gray-800"
           placeholder="Type your answer here"
         />
@@ -1384,7 +1384,7 @@ const AdventureLearningGame = () => {
     <button
       className={`dark-toggle${darkMode ? ' active' : ''}`}
       aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-      onClick={() => setDarkMode(dm => !dm)}
+      onClick={() => setDarkMode((dm: boolean) => !dm)}
     >
       <span className="toggle-track">
         <span className="toggle-thumb" />
@@ -1400,7 +1400,7 @@ const AdventureLearningGame = () => {
       <button className="nav-btn" aria-label="Go to main menu" onClick={() => setCurrentScene('start')}><Home /></button>
       <button className="nav-btn" aria-label="Scroll to stats" onClick={() => document.querySelector('.elongated-stats-bar')?.scrollIntoView({ behavior: 'smooth' })}><Star /></button>
       <button className="nav-btn" aria-label="Scroll to inventory" onClick={() => document.querySelector('.stats-artifact-cards')?.scrollIntoView({ behavior: 'smooth' })}><List /></button>
-      <button className="nav-btn" aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} onClick={() => setDarkMode(dm => !dm)}>{darkMode ? <Sun /> : <Moon />}</button>
+      <button className="nav-btn" aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} onClick={() => setDarkMode((dm: boolean) => !dm)}>{darkMode ? <Sun /> : <Moon />}</button>
     </nav>
   );
 
@@ -1477,7 +1477,7 @@ const AdventureLearningGame = () => {
                       className="choice-btn"
                       aria-label={`Choose: ${choice.text}`}
                       onClick={choice.action}
-                      onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && choice.action()}
+                      onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) => (e.key === 'Enter' || e.key === ' ') && choice.action()}
                       style={{ minWidth: '400px', maxWidth: '600px', minHeight: '50px', whiteSpace: 'nowrap', textAlign: 'center', fontSize: '1.1rem', fontWeight: 600, lineHeight: 1.2, padding: '0.8rem 2rem', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block', width: '100%' }}
                     >
                       {choice.text}
