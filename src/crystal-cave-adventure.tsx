@@ -1450,7 +1450,7 @@ const AdventureLearningGame = () => {
                       aria-label={`Choose: ${choice.text}`}
                       onClick={choice.action}
                       onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) => (e.key === 'Enter' || e.key === ' ') && choice.action()}
-                      style={{ width: '80%', minHeight: '44px', whiteSpace: 'nowrap', textAlign: 'center', fontSize: '0.9rem', fontWeight: 600, lineHeight: 1.2, padding: '0.6rem 1rem', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}
+                      style={{ width: '80%', minHeight: '44px', whiteSpace: 'normal', textAlign: 'center', fontSize: '0.72rem', fontWeight: 600, lineHeight: 1.3, padding: '0.6rem 1rem', overflowWrap: 'break-word', display: 'block' }}
                     >
                       {choice.text}
                     </button>
